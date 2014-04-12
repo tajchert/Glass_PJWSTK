@@ -240,8 +240,9 @@ public class LessonActivity extends Activity implements
 			
 			Date curr = new Date();
 			//For testing purposes
-			// curr.setHours(7);
-			// curr.setMinutes(46);
+			//curr.setDate(15);
+			//curr.setHours(10);
+			//curr.setMinutes(46);
 			long diff;
 			for (Map.Entry<Long,Zajecia> entry : GlassOwner.zajecia.entrySet()) {
 				Zajecia zaj = entry.getValue();
