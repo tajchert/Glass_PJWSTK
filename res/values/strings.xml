@@ -9,7 +9,16 @@
     <string name="card_lesson_till_end">Do końca:\n\n      </string>
     <string name="card_lesson_main_till_next">Next lesson is in </string>
     <string name="card_lesson_no_lessons_week">Brak zajęć w tym tygodniu.</string>
-    <string name="card_lesson_next_lesson">Następne:\n\n            </string>
+    <string name="card_lesson_next_lesson">Następne:\n            </string>
+    
+    <!-- WEEKDAYS -->
+    <string name="schedule_monday">Poniedziałek</string>
+    <string name="schedule_tuesday">Wtorek</string>
+    <string name="schedule_wednesday">Środa</string>
+    <string name="schedule_thursday">Czwartek</string>
+    <string name="schedule_friday">Piątek</string>
+    <string name="schedule_saturday">Sobota</string>
+    <string name="schedule_sunday">Niedziela</string>
     
     
 

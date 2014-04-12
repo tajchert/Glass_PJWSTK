@@ -91,9 +91,6 @@ public class LessonActivity extends Activity implements
 		mCards = new ArrayList<Card>();
 
 		card1 = new Card(this);
-		// card1.setText("Nastêpne zajêcia:\n         "+GlassOwner.zajecia.firstEntry().getValue().getNazwa()+"\n         "
-		// + GlassOwner.zajecia.firstEntry().getValue().date.getHours()); //
-		// Main text area
 
 		if (close != null) {
 			String content = getResources().getString(R.string.card_lesson_next_lesson)
@@ -132,7 +129,7 @@ public class LessonActivity extends Activity implements
 		}
 		
 		mCards.add(card1);
-		if(GlassOwner.zajeciaNotNeed != null && GlassOwner.zajeciaNotNeed.size()>0){
+		if(close!= null && close.date != null && GlassOwner.zajeciaNotNeed != null && GlassOwner.zajeciaNotNeed.size()>0){
 			Zajecia prev = close;
 			for (Map.Entry<Long,Zajecia> entry : GlassOwner.zajecia.entrySet()) {
 				if(entry.getKey() != close.date.getTime()){
@@ -143,25 +140,25 @@ public class LessonActivity extends Activity implements
 						String dayWeek = "Default";
 						switch(zaj.date.getDay()){
 							case 0:
-								dayWeek = "Niedziela";
+								dayWeek = getResources().getString(R.string.schedule_sunday);
 								break;
 							case 1:
-								dayWeek = "Poniedzialek";
+								dayWeek = getResources().getString(R.string.schedule_monday);
 								break;
 							case 2:
-								dayWeek = "Wtorek";
+								dayWeek = getResources().getString(R.string.schedule_tuesday);
 								break;
 							case 3:
-								dayWeek = "Sroda";
+								dayWeek = getResources().getString(R.string.schedule_wednesday);
 								break;
 							case 4:
-								dayWeek = "Czwartek";
+								dayWeek = getResources().getString(R.string.schedule_thursday);
 								break;
 							case 5:
-								dayWeek = "Piatek";
+								dayWeek = getResources().getString(R.string.schedule_friday);
 								break;
 							case 6:
-								dayWeek = "Sobota";
+								dayWeek = getResources().getString(R.string.schedule_saturday);
 								break;
 						}
 						dayWeek  += "  "+  zaj.date.getDate() + "." + (zaj.date.getMonth()+1);
@@ -171,15 +168,14 @@ public class LessonActivity extends Activity implements
 					prev = zaj;
 					
 					Card card3 = new Card(this);
-					String content = getResources().getString(R.string.card_lesson_next_lesson)
-							+ zaj.date.getHours() + ":";
+					String content = zaj.date.getHours() + ":";
 					int min = zaj.date.getMinutes();
 					if (min < 10) {
 						content += "0" + min;
 					} else {
 						content += min;
 					}
-					content += "\n            " + zaj.getKod();
+					content += "\n" + zaj.getKod();
 					card3.setText(content); // Main text area
 					card3.setFootnote(zaj.getNazwa_sali() + "  " + zaj.getBudynek());;
 					card3.setImageLayout(Card.ImageLayout.LEFT);
@@ -191,7 +187,10 @@ public class LessonActivity extends Activity implements
 
 		
 		adapter.notifyDataSetChanged();
-		publishCard(LessonActivity.this);
+		//publishCard(LessonActivity.this);
+		if(close != null){
+			publishStaticCard(LessonActivity.this, card1);
+		}
 	}
 
 	private void speakTillNextLesson() {
@@ -308,6 +307,10 @@ public class LessonActivity extends Activity implements
 			Log.e("TTS", "Initilization Failed!");
 		}
 
+	}
+	private void publishStaticCard(Context context, Card card) {
+		TimelineManager tm = TimelineManager.from(context);
+		tm.insert(card);
 	}
 
 	private void publishCard(Context context) {

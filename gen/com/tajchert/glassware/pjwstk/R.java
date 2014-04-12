@@ -206,6 +206,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int card_lesson_next_lesson=0x7f070006;
         public static final int card_lesson_no_lessons_week=0x7f070005;
         public static final int card_lesson_till_end=0x7f070003;
+        public static final int schedule_friday=0x7f07000b;
+        /**  WEEKDAYS 
+         */
+        public static final int schedule_monday=0x7f070007;
+        public static final int schedule_saturday=0x7f07000c;
+        public static final int schedule_sunday=0x7f07000d;
+        public static final int schedule_thursday=0x7f07000a;
+        public static final int schedule_tuesday=0x7f070008;
+        public static final int schedule_wednesday=0x7f070009;
         public static final int start_helloglass=0x7f070001;
     }
     public static final class style {
