@@ -35,7 +35,7 @@ Also there would be added cards related to days, so lessons from Wednesday and T
 Code ain't beautiful as I borrowed Glasses only for a limited time, and I didn't had time to think it through before coding.
 
 ###License
-`The MIT License (MIT)
+```The MIT License (MIT)
 
 Copyright (c) 2014 Michał Tajchert
 
@@ -55,4 +55,4 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.`
+SOFTWARE.```
