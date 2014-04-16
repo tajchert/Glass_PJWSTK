@@ -20,7 +20,6 @@ import android.widget.RemoteViews;
 
 import com.google.android.glass.app.Card;
 import com.google.android.glass.timeline.LiveCard;
-import com.google.android.glass.timeline.TimelineManager;
 import com.google.android.glass.widget.CardScrollAdapter;
 import com.google.android.glass.widget.CardScrollView;
 import com.tajchert.glassware.pjwstk.api.Zajecia;
@@ -44,7 +43,7 @@ public class LessonActivity extends Activity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		tts = new TextToSpeech(this, this);
 		mCardScrollView = new CardScrollView(this);
 		adapter = new ExampleCardScrollAdapter();
@@ -211,14 +210,6 @@ public class LessonActivity extends Activity implements
 
 	private class ExampleCardScrollAdapter extends CardScrollAdapter {
 		@Override
-		public int findIdPosition(Object id) {
-			return -1;
-		}
-		@Override
-		public int findItemPosition(Object item) {
-			return mCards.indexOf(item);
-		}
-		@Override
 		public int getCount() {
 			return mCards.size();
 		}
@@ -228,7 +219,11 @@ public class LessonActivity extends Activity implements
 		}
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			return mCards.get(position).toView();
+			return mCards.get(position).getView();
+		}
+		@Override
+		public int getPosition(Object item) {
+			return mCards.indexOf(item);
 		}
 	}
 
@@ -310,39 +305,8 @@ public class LessonActivity extends Activity implements
 
 	}
 	private void publishStaticCard(Context context, Card card) {
-		TimelineManager tm = TimelineManager.from(context);
-		tm.insert(card);
-	}
-
-	private void publishCard(Context context) {
-		try {
-			unpublishCard(context);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (mLiveCard == null) {
-			TimelineManager tm = TimelineManager.from(context);
-			mLiveCard = tm.createLiveCard(LIVE_CARD_ID);
-
-			// mLiveCard.setViews(new
-			// RemoteViews(context.getPackageName(),R.layout.livecard_lesson));
-			Intent intent = new Intent(context, LessonActivity.class);
-			mLiveCard.setAction(PendingIntent
-					.getActivity(context, 0, intent, 0));
-			RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-					R.layout.livecard_lesson);
-			// Log.e("PJWSTK_GLASS", content);
-
-			remoteViews.setTextViewText(R.id.textViewContent,
-					"PJWSTK\n\nNastêpne zajęcia");
-			// remoteViews.setCharSequence(R.id.textViewContent, "setText",
-			// content);
-			mLiveCard.setViews(remoteViews);
-			mLiveCard.publish(LiveCard.PublishMode.SILENT);
-		} else {
-			// Card is already published.
-			return;
-		}
+		//TimelineManager tm = TimelineManager.from(context);
+		//tm.insert(card);
 	}
 
 	private void unpublishCard(Context context) {
